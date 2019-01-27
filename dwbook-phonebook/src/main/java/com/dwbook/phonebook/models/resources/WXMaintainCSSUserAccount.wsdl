@@ -1,0 +1,444 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is JAX-WS RI 2.2.10-b140319.1121 svn-revision#7b34660d6bc70e587e8ec81a17e4d76af68816a6. --><wsdl:definitions xmlns:tns="http://ouaf.oracle.com/webservices/c1/WXMaintainCSSUserAccount" xmlns:ouaf="http://ouaf.oracle.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="WXMaintainCSSUserAccount" targetNamespace="http://ouaf.oracle.com/webservices/c1/WXMaintainCSSUserAccount" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wssutil="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"><wsp:UsingPolicy wssutil:Required="true"/><ns0:Policy xmlns:ns0="http://schemas.xmlsoap.org/ws/2004/09/policy" wssutil:Id="Wssp1.2-2007-Https-BasicAuth.xml"><ns1:TransportBinding xmlns:ns1="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702"><ns0:Policy><ns1:TransportToken><ns0:Policy><ns1:HttpsToken><ns0:Policy><ns1:HttpBasicAuthentication/></ns0:Policy></ns1:HttpsToken></ns0:Policy></ns1:TransportToken><ns1:AlgorithmSuite><ns0:Policy><ns1:Basic256/></ns0:Policy></ns1:AlgorithmSuite><ns1:Layout><ns0:Policy><ns1:Lax/></ns0:Policy></ns1:Layout><ns1:IncludeTimestamp/></ns0:Policy></ns1:TransportBinding></ns0:Policy>
+  <wsdl:documentation>WXMaintainCSSUserAccount version 1: Maintain Self-Service User Account</wsdl:documentation>
+  <wsdl:types>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ouaf="http://ouaf.oracle.com/" targetNamespace="http://ouaf.oracle.com/" elementFormDefault="unqualified">
+          <xsd:element name="Fault">
+            <xsd:complexType>
+                <xsd:all>
+                    <xsd:element name="ResponseStatus" type="xsd:string"/>
+                    <xsd:element name="ResponseCode" type="xsd:int"/>
+                    <xsd:element name="ResponseText" type="xsd:string"/>
+                    <xsd:element name="ResponseData" minOccurs="0">
+                        <xsd:complexType>
+                            <xsd:attribute name="parm1" type="xsd:string"/>
+                            <xsd:attribute name="parm2" type="xsd:string"/>
+                            <xsd:attribute name="parm3" type="xsd:string"/>
+                            <xsd:attribute name="parm4" type="xsd:string"/>
+                            <xsd:attribute name="parm5" type="xsd:string"/>
+                            <xsd:attribute name="parm6" type="xsd:string"/>
+                            <xsd:attribute name="parm7" type="xsd:string"/>
+                            <xsd:attribute name="parm8" type="xsd:string"/>
+                            <xsd:attribute name="parm9" type="xsd:string"/>
+                            <xsd:attribute name="text" type="xsd:string"/>
+                            <xsd:attribute name="category" type="xsd:string"/>
+                            <xsd:attribute name="numParm" type="xsd:int"/>
+                            <xsd:attribute name="number" type="xsd:int"/>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="ServerMessage" minOccurs="0">
+                        <xsd:complexType>
+                            <xsd:all>
+                                <xsd:element name="Category" type="xsd:string"/>
+                                <xsd:element name="Number" type="xsd:string"/>
+                                <xsd:element name="CallSequence" type="xsd:string"/>
+                                <xsd:element name="ProgramName" type="xsd:string"/>
+                                <xsd:element name="Text" type="xsd:string"/>
+                                <xsd:element name="Description" type="xsd:string"/>
+                                <xsd:element name="Table" type="xsd:string"/>
+                                <xsd:element name="Field" type="xsd:string"/>
+                            </xsd:all>
+                        </xsd:complexType>
+                    </xsd:element>
+                  </xsd:all>
+              </xsd:complexType>
+          </xsd:element>
+          <xsd:simpleType name="money">
+            <xsd:restriction base="xsd:decimal"/>
+          </xsd:simpleType>
+          <xsd:simpleType name="listAction">
+            <xsd:restriction base="xsd:token">
+              <xsd:enumeration value="delete"/>
+              <xsd:enumeration value="add"/>
+              <xsd:enumeration value="update"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+      </xsd:schema>
+	
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ouaf="http://ouaf.oracle.com/" targetNamespace="http://ouaf.oracle.com/webservices/c1/WXMaintainCSSUserAccount" elementFormDefault="qualified">
+  <xsd:import namespace="http://ouaf.oracle.com/"/>
+  <xsd:element name="WXMaintainCSSUserAccount">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="head" minOccurs="0">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="action" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="keys" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="key1" minOccurs="0">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element name="name" type="xsd:string" minOccurs="0" default="ACCT_ID"/>
+                          <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                        </xsd:sequence>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="key2" minOccurs="0">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element name="name" type="xsd:string" minOccurs="0" default="PER_ID"/>
+                          <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                        </xsd:sequence>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="key3" minOccurs="0">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element name="name" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                        </xsd:sequence>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="key4" minOccurs="0">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element name="name" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                        </xsd:sequence>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="key5" minOccurs="0">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element name="name" type="xsd:string" minOccurs="0"/>
+                          <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                        </xsd:sequence>
+                      </xsd:complexType>
+                    </xsd:element>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="emailAddress" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="webUserId" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="ipAddress" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="cssUser" type="xsd:string" minOccurs="0"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="mainData" minOccurs="0">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="notificationOwner" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="accounts" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="key1">
+                      <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                          <xsd:maxLength value="10"/>
+                        </xsd:restriction>
+                      </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element name="accessRole" nillable="true">
+                      <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                          <xsd:enumeration value="C1AH"/>
+                          <xsd:enumeration value="C1GU"/>
+                        </xsd:restriction>
+                      </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element name="shouldAllowCommPref" nillable="true" type="xsd:boolean" minOccurs="0"/>
+                    <xsd:element name="shouldRetainPreference" type="xsd:string" minOccurs="0"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="firstName">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:maxLength value="50"/>
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element name="lastName">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:maxLength value="50"/>
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element name="removeCSSInfo" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="updateEmail" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="oldEmail" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="verifyAccountData" minOccurs="0">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="businessLine" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="accountVerification" minOccurs="0">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element name="field1" minOccurs="0">
+                            <xsd:complexType>
+                              <xsd:sequence>
+                                <xsd:element name="value" minOccurs="0">
+                                  <xsd:simpleType>
+                                    <xsd:restriction base="xsd:string">
+                                      <xsd:maxLength value="254"/>
+                                    </xsd:restriction>
+                                  </xsd:simpleType>
+                                </xsd:element>
+                                <xsd:element name="description" type="xsd:string" minOccurs="0"/>
+                                <xsd:element name="format" type="xsd:string" minOccurs="0"/>
+                              </xsd:sequence>
+                            </xsd:complexType>
+                          </xsd:element>
+                          <xsd:element name="field2" minOccurs="0">
+                            <xsd:complexType>
+                              <xsd:sequence>
+                                <xsd:element name="value" minOccurs="0">
+                                  <xsd:simpleType>
+                                    <xsd:restriction base="xsd:string">
+                                      <xsd:maxLength value="254"/>
+                                    </xsd:restriction>
+                                  </xsd:simpleType>
+                                </xsd:element>
+                                <xsd:element name="description" type="xsd:string" minOccurs="0"/>
+                                <xsd:element name="format" type="xsd:string" minOccurs="0"/>
+                              </xsd:sequence>
+                            </xsd:complexType>
+                          </xsd:element>
+                          <xsd:element name="field3" minOccurs="0">
+                            <xsd:complexType>
+                              <xsd:sequence>
+                                <xsd:element name="value" minOccurs="0">
+                                  <xsd:simpleType>
+                                    <xsd:restriction base="xsd:string">
+                                      <xsd:maxLength value="254"/>
+                                    </xsd:restriction>
+                                  </xsd:simpleType>
+                                </xsd:element>
+                                <xsd:element name="description" type="xsd:string" minOccurs="0"/>
+                                <xsd:element name="format" type="xsd:string" minOccurs="0"/>
+                              </xsd:sequence>
+                            </xsd:complexType>
+                          </xsd:element>
+                          <xsd:element name="field4" minOccurs="0">
+                            <xsd:complexType>
+                              <xsd:sequence>
+                                <xsd:element name="value" minOccurs="0">
+                                  <xsd:simpleType>
+                                    <xsd:restriction base="xsd:string">
+                                      <xsd:maxLength value="254"/>
+                                    </xsd:restriction>
+                                  </xsd:simpleType>
+                                </xsd:element>
+                                <xsd:element name="description" type="xsd:string" minOccurs="0"/>
+                                <xsd:element name="format" type="xsd:string" minOccurs="0"/>
+                              </xsd:sequence>
+                            </xsd:complexType>
+                          </xsd:element>
+                          <xsd:element name="field5" minOccurs="0">
+                            <xsd:complexType>
+                              <xsd:sequence>
+                                <xsd:element name="value" minOccurs="0">
+                                  <xsd:simpleType>
+                                    <xsd:restriction base="xsd:string">
+                                      <xsd:maxLength value="254"/>
+                                    </xsd:restriction>
+                                  </xsd:simpleType>
+                                </xsd:element>
+                                <xsd:element name="description" type="xsd:string" minOccurs="0"/>
+                                <xsd:element name="format" type="xsd:string" minOccurs="0"/>
+                              </xsd:sequence>
+                            </xsd:complexType>
+                          </xsd:element>
+                        </xsd:sequence>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="isVerified" type="xsd:string" minOccurs="0"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="custom" minOccurs="0">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="field1" minOccurs="0">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="name" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="field2" minOccurs="0">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="name" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="field3" minOccurs="0">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="name" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="field4" minOccurs="0">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="name" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="field5" minOccurs="0">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="name" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="field6" minOccurs="0">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="name" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="field7" minOccurs="0">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="name" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="field8" minOccurs="0">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="name" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="field9" minOccurs="0">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="name" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="field10" minOccurs="0">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="name" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="errorInformation" minOccurs="0">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="isInError" nillable="true" type="xsd:boolean" minOccurs="0" default="false"/>
+              <xsd:element name="errorReference" minOccurs="0">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="category" minOccurs="0">
+                      <xsd:simpleType>
+                        <xsd:restriction base="xsd:decimal">
+                          <xsd:minExclusive value="-99999"/>
+                          <xsd:maxExclusive value="99999"/>
+                        </xsd:restriction>
+                      </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element name="number" minOccurs="0">
+                      <xsd:simpleType>
+                        <xsd:restriction base="xsd:decimal">
+                          <xsd:minExclusive value="-99999"/>
+                          <xsd:maxExclusive value="99999"/>
+                        </xsd:restriction>
+                      </xsd:simpleType>
+                    </xsd:element>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="errorMessage" minOccurs="0">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:maxLength value="254"/>
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>
+
+  </wsdl:types>
+
+  <!-- wsdl:message elements describe potential transactions -->
+  <!-- request for operation WXMaintainCSSUserAccount -->
+  <wsdl:message name="WXMaintainCSSUserAccountRequest">
+    <wsdl:part name="body" element="tns:WXMaintainCSSUserAccount"/>
+  </wsdl:message>
+
+  <!-- response for operation WXMaintainCSSUserAccount -->
+  <wsdl:message name="WXMaintainCSSUserAccountResponse">
+    <wsdl:part name="body" element="tns:WXMaintainCSSUserAccount"/>
+  </wsdl:message>
+  
+  <!-- fault type -->
+  <wsdl:message name="Fault">
+    <wsdl:part name="fault" element="ouaf:Fault"/>
+  </wsdl:message>
+
+  <!-- wsdl:portType describes messages in an operation -->
+  <wsdl:portType name="WXMaintainCSSUserAccountPortType">
+    <wsdl:documentation>WXMaintainCSSUserAccount version 1: Maintain Self-Service User Account</wsdl:documentation> 
+    <wsdl:operation name="WXMaintainCSSUserAccount">
+      <wsdl:input message="tns:WXMaintainCSSUserAccountRequest"/>
+      <wsdl:output message="tns:WXMaintainCSSUserAccountResponse"/>
+      <wsdl:fault name="fault" message="tns:Fault"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+  <!-- wsdl:binding states a serialization protocol for this service -->
+  <wsdl:binding name="WXMaintainCSSUserAccountSoapBinding" type="tns:WXMaintainCSSUserAccountPortType"><wsp:PolicyReference URI="#Wssp1.2-2007-Https-BasicAuth.xml"/>
+    <!-- leverage off soap:binding document style @@@(no wsdl:foo pointing at
+         the soap binding) -->
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <!-- semi-opaque container of network transport details classed by
+         soap:binding above @@@ -->
+    <wsdl:operation name="WXMaintainCSSUserAccount">
+      <!-- again bind to SOAP? @@@ -->
+      <soap:operation soapAction="http://ip-172-31-18-81.us-west-2.compute.internal/webservices/WXMaintainCSSUserAccount#WXMaintainCSSUserAccount"/>
+      <!-- furthur specify that the messages in the wsdl:operation
+           "WXMaintainCSSUserAccount" use SOAP? @@@ -->
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <!-- wsdl:service names a new service "WXMaintainCSSUserAccountService" -->
+  <wsdl:service name="WXMaintainCSSUserAccountService">
+    <wsdl:documentation>WXMaintainCSSUserAccount version 1: Maintain Self-Service User Account</wsdl:documentation> 
+
+    <!-- connect it to the binding "WXMaintainCSSUserAccountSoapBinding" above -->
+    <wsdl:port name="WXMaintainCSSUserAccountPort" binding="tns:WXMaintainCSSUserAccountSoapBinding">
+      <!-- give the binding a network address -->
+      <soap:address location="https://34.209.29.39:6501/ouaf/webservices/WXMaintainCSSUserAccount"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
