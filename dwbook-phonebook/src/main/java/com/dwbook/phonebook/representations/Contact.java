@@ -1,9 +1,20 @@
 package com.dwbook.phonebook.representations;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+
 public class Contact {
     private final int id;
+
+    @NotBlank
+    @Length(min=2 , max=255)
     private final String firstName;
+    @NotBlank
+    @Length(min=2 , max=255)
     private final String lastName;
+
+    @NotBlank
+    @Length(min=2 , max=20)
     private final String phone;
 
     public Contact()
@@ -14,7 +25,6 @@ public class Contact {
         this.phone = null;
 
     }
-
 
     public Contact(int id, String firstName, String lastName, String phoneNumber)
     {

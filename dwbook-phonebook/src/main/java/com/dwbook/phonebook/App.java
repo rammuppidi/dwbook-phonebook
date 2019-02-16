@@ -35,7 +35,7 @@ public class App extends Application<PhonebookConfiguration> {
            final DBIFactory factory = new DBIFactory();
            final DBI jdbi = factory.build(e, c.getDataSourceFactory(),"mysql");
            jdbi.onDemand(ContactDAO.class);
-           e.jersey().register(new ContactResource(jdbi));
+           e.jersey().register(new ContactResource(jdbi , e.getValidator()));
         LOGGER.info("DAO Registered");
     }
 
